@@ -23,12 +23,12 @@ class DataBase:
   def create_users(self, usuario: UsuarioCreate):
         with self._connect() as connect:
             cursor = connect.cursor()
-            cursor.execute("INSERT INTO usuarios (nome, email,senha) VALUES (?, ?)", 
+            cursor.execute("INSERT INTO usuarios (nome, email,senha) VALUES (?, ?, ?)", 
                            (usuario.nome, usuario.email, usuario.senha,))
             connect.commit()
             return cursor.lastrowid
 
-  def search_user(self, email: str):
+  def search(self, email: str):
         with self._connect() as connect:
             cursor = connect.cursor()
             cursor.execute("SELECT * FROM usuarios WHERE email = ?", (email,))
