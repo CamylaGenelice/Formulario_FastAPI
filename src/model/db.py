@@ -1,5 +1,5 @@
 import sqlite3
-from src.schemas.schemas import UsuarioCreate
+from src.schemas.schemas import UsuarioCreate, CreateProduct, SearchProduct
 
 class DataBase:
 
@@ -33,4 +33,23 @@ class DataBase:
             cursor = connect.cursor()
             cursor.execute("SELECT * FROM usuarios WHERE email = ?", (email,))
             # Converte as linhas do banco em dicionários para o Pydantic entender
+            return [dict(row) for row in cursor.fetchall()]
+  
+  def create_table_product(self):
+      with self._connect() as connect:
+            connect.execute('''CREATE TABLE IF NOT EXISTS produtos 
+                            (id INTEGER PRIMARY KEY AUTOINCREMENT, codigo TEXT, nome TEXT, tamanho TEXT)''')
+
+  def create_product(self, product: CreateProduct):
+       with self._connect() as connect:
+            cursor = connect.cursor()
+            cursor.execute("INSERT INTO produtos (codigo, nome, tamanho) VALUES (?,?,?)",
+                           (product.code, product.name, product.size))
+            connect.commit()
+            return cursor.lastrowid
+       
+  def search_product(self, code: SearchProduct):
+       with self._connect() as connect:
+            cursor = connect.cursor()
+            cursor.execute("SELECT * FROM produtos WHERE codigo = ?", (code,))
             return [dict(row) for row in cursor.fetchall()]

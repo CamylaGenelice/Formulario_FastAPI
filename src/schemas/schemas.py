@@ -17,3 +17,23 @@ class UsuarioResponse(BaseModel):
     id: int
     class Config:
         from_attributes = True
+
+class CreateProduct(BaseModel):
+    code: str
+    name: str  
+    size: str
+
+    class Config:
+        from_attributes = True
+
+class SearchProduct(BaseModel):
+    code: str
+
+    class Config:
+        from_attributes = True
+class ProductResponse(BaseModel):
+    code: str
+    name: str  
+    size: str
+    class Config:
+        from_attributes = True

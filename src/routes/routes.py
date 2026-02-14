@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from src.schemas.schemas import UsuarioCreate
-from src.service.services import Service
+from src.service.services import UserService
 
 
 
@@ -9,7 +9,7 @@ auth_router = APIRouter(prefix="/auth", tags=["auth"])
 @auth_router.post('/usuarios')
 async def create(usuario: UsuarioCreate):
     try:
-        user = await Service().create_user(usuario)
+        user = await UserService().create_user(usuario)
         return {
             'message': 'Usuario cadastrado com sucesso',
             'id': user

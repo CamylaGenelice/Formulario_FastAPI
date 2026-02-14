@@ -3,7 +3,7 @@ from src.model.db import DataBase
 import bcrypt
 import re
 
-class Service:
+class UserService:
 
     def _validation_name(self, name):
 
@@ -47,7 +47,7 @@ class Service:
             return DataBase().create_users(usuario)
         
         except Exception as e:
-            print('Erro no services ' ,e)
+            print('Erro: ' ,e)
             raise e
         
     async def search_user(self, email: str):
@@ -60,7 +60,7 @@ class Service:
             return DataBase().search(email)
         
         except Exception as e:
-            print('Erro no services ' ,e)
+            print('Erro: ' ,e)
             raise e
 
         
