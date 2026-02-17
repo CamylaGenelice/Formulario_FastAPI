@@ -1,27 +1,36 @@
 from src.schemas.schemas import CreateProduct, SearchProduct
-from src.model.db import DataBase
+from src.model.product_model import DataProduct
 
 class ProductService:
 
-    async def create_product(self, product: CreateProduct, code: SearchProduct):
+    def create_product(self, product: CreateProduct):
         try:
-            if await self.search_product(code=code):
+            if  self.search_product(product.code):
                 raise ValueError('Produto já esta cadastrado')
             
-            new_product =  CreateProduct(code=product.code, name=product.name, size=product.size)
-
-            return DataBase().create_product(new_product)
+            
+            obj = DataProduct()
+            return obj.create_product(product)
+        
+            
 
         except Exception as e:
             print('Erro: ',e)
             raise ValueError('Erro ao criar produto')
 
-    async def search_product(self, code:SearchProduct ):
+    def search_product(self, code:str ):
         try:
-             consult = SearchProduct(code=code.code)
+            
 
-             return DataBase().search_product(consult)
+             return DataProduct().search_product(code)
         
+        except Exception as e:
+            print('Erro: ',e)
+            raise ValueError('Erro ao buscar produto')
+        
+    def get_product(self):
+        try:
+            return DataProduct().get_product()
         except Exception as e:
             print('Erro: ',e)
             raise ValueError('Erro ao buscar produto')

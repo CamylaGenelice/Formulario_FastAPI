@@ -13,8 +13,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from src.routes.routes import auth_router as routes
+from src.routes.routes import auth_router 
+from src.routes.products_routes import product_router 
 
-app.include_router(routes)
+app.include_router(auth_router)
+app.include_router(product_router)
 
 

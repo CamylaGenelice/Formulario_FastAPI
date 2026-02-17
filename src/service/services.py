@@ -25,13 +25,13 @@ class UserService:
         return False
     
 
-    async def create_user(self, dados: UsuarioCreate):
+    def create_user(self, dados: UsuarioCreate):
         try:
 
             if len(dados.senha) <= 8:
                 raise ValueError('A senha deve ter pelo menos 8 caracteres')
 
-            if await self.search_user(dados.email):
+            if self.search_user(dados.email):
                 raise ValueError('Email já esta cadastrado')
             
             if self._validation_name(dados.nome) != True:
@@ -50,7 +50,7 @@ class UserService:
             print('Erro: ' ,e)
             raise e
         
-    async def search_user(self, email: str):
+    def search_user(self, email: str):
         
         try:
             
