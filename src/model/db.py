@@ -1,5 +1,5 @@
 import sqlite3
-from src.schemas.schemas import UsuarioCreate, CreateProduct, SearchProduct
+from src.schemas.schemas import UsuarioCreate
 
 class DataBase:
 

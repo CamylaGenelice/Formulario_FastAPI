@@ -1,10 +1,13 @@
-from src.schemas.schemas import CreateProduct, SearchProduct
+from src.schemas.schemas import CreateProduct
 from src.model.product_model import DataProduct
 
 class ProductService:
 
     def create_product(self, product: CreateProduct):
         try:
+            # remove os espaços
+            product.code = product.code.replace(" ", "")
+
             if  self.search_product(product.code):
                 raise ValueError('Produto já esta cadastrado')
             
