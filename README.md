@@ -1,5 +1,5 @@
-# 🚀 Fórmulario de Cadastro API (FastAPI + SQLite)
-Este é o back-end de um fórmulario simples, para aplicar os meus conhecimentos. Focado em Separação de Responsabilidades (SoC) e segurança na persistência de dados.
+# 🚀 Formulário de Cadastro API (FastAPI + SQLite)
+Este é o back-end de um formulário simples de cadastro de usuários e de produtos, para aplicar os meus conhecimentos. Focado em Separação de Responsabilidades e segurança na persistência de dados.
 
 ## 📋 Arquitetura do Projeto
 O projeto foi estruturado seguindo padrões de camadas para facilitar a manutenção e escalabilidade:
